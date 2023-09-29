@@ -1,0 +1,91 @@
+.container{
+  margin: 0 auto;
+  padding: 20px 0;
+}
+textarea{
+  resize: vertical;
+  padding: 10px;
+  border-radius: 20px;
+  box-shadow: 2px 3px 1px #5e5e5e;
+}
+select, .date{
+  outline: none;
+  padding: 10px;
+  border-radius: 50px;
+  font-size: 1rem;
+  box-shadow: 2px 3px 1px #5e5e5e;
+  border: 1px solid #5e5e5e;
+}
+label{
+  font-size: 1rem;
+  padding: 10px;
+  
+}
+button{
+  margin-top: 10px;
+  background-color: #662549;
+  color: #fff;
+  border-radius: 50px;
+  padding: 10px;
+  font-size: 1rem;
+  box-shadow: 2px 3px 1px #5e5e5e;
+  /* border: 1px solid #5e5e5e; */
+}
+.header{
+  grid-area: header;
+  font-weight: 900;
+  font-size: 2rem;
+  text-transform: uppercase;
+  padding: 0 50px 50px 50px;
+  color: #5e5e5e;
+  text-decoration: underline;
+  
+}
+
+.item1 {
+  grid-area: title;
+  margin-bottom: 50px;
+}
+.item2{
+  grid-area: description;
+}
+.item3{
+  grid-area: date;
+}
+.item4{
+  grid-area: category;
+}
+.formArea{
+  display: grid;
+  grid-template-areas: 
+  ". . header header header  header header . ."
+ " . . title title title  date date . . "
+  ". . title title title  date date . . "
+  ". . description description description category category . ."
+}
+.inputArea{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding: 0 50px;
+}
+
+.input {
+  padding: 10px 20px;
+  border-radius: 50px;
+  border: 1px solid #5e5e5e;
+  outline: none;
+  box-shadow: 2px 3px 1px #5e5e5e;
+}
+
+textarea:focus , select:focus , .input:focus, .date:focus{
+  outline: none;
+  animation: borderAnimation 2s ease-in-out 0s 1 normal forwards;
+}
+@keyframes borderAnimation {
+  0% {background-color: #fff;
+  border: 1px solid;}
+  50% {background-color: #e6e6e6;
+  border: 1px solid #662549}
+  100% {background-color: #e7e7e7;}
+}
