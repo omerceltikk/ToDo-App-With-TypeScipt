@@ -1,14 +1,16 @@
-.container{
+.container {
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 3rem 0;
+  max-width: 1280px;
 }
-textarea{
+textarea {
   resize: vertical;
   padding: 10px;
   border-radius: 20px;
   box-shadow: 2px 3px 1px #5e5e5e;
 }
-select, .date{
+select,
+.date {
   outline: none;
   padding: 10px;
   border-radius: 50px;
@@ -16,12 +18,21 @@ select, .date{
   box-shadow: 2px 3px 1px #5e5e5e;
   border: 1px solid #5e5e5e;
 }
-label{
+label {
   font-size: 1rem;
   padding: 10px;
-  
 }
-button{
+.displayNone {
+  display: none;
+}
+
+.displayBlock {
+  display: block;
+}
+.addTodoView{
+  transition: all 1s ease-in 0s;
+}
+button {
   margin-top: 10px;
   background-color: #662549;
   color: #fff;
@@ -31,39 +42,38 @@ button{
   box-shadow: 2px 3px 1px #5e5e5e;
   /* border: 1px solid #5e5e5e; */
 }
-.header{
-  grid-area: header;
+.header {
   font-weight: 900;
   font-size: 2rem;
   text-transform: uppercase;
-  padding: 0 50px 50px 50px;
   color: #5e5e5e;
   text-decoration: underline;
-  
+  padding: 0 20px 20px;
 }
 
 .item1 {
   grid-area: title;
   margin-bottom: 50px;
 }
-.item2{
+.item2 {
   grid-area: description;
 }
-.item3{
+.item3 {
   grid-area: date;
 }
-.item4{
+.item4 {
   grid-area: category;
 }
-.formArea{
+.formArea {
   display: grid;
-  grid-template-areas: 
-  ". . header header header  header header . ."
- " . . title title title  date date . . "
-  ". . title title title  date date . . "
-  ". . description description description category category . ."
+  grid-template-areas:
+    "  title title  "
+    " date date  "
+    " description description "
+    " category category ";
+    gap: 20px;
 }
-.inputArea{
+.inputArea {
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -78,14 +88,43 @@ button{
   box-shadow: 2px 3px 1px #5e5e5e;
 }
 
-textarea:focus , select:focus , .input:focus, .date:focus{
+textarea:focus,
+select:focus,
+.input:focus,
+.date:focus {
   outline: none;
   animation: borderAnimation 2s ease-in-out 0s 1 normal forwards;
 }
 @keyframes borderAnimation {
-  0% {background-color: #fff;
-  border: 1px solid;}
-  50% {background-color: #e6e6e6;
-  border: 1px solid #662549}
-  100% {background-color: #e7e7e7;}
+  0% {
+    background-color: #fff;
+    border: 1px solid;
+  }
+  50% {
+    background-color: #e6e6e6;
+    border: 1px solid #662549;
+  }
+  100% {
+    background-color: #e7e7e7;
+  }
+}
+@media screen and (min-width: 576px) {
+  .formArea {
+    gap: 0;
+    padding: 0;
+    grid-template-areas:
+      " . . title title title  date date . . "
+      ". . title title title  date date . . "
+      ". . description description description category category . .";
+  }
+}
+@media screen and (min-width: 768px) {
+  .header {
+    padding: 0 50px 50px 50px;
+  }
+}
+@media screen and (min-width: 1400px) {
+  .header {
+    padding-left: 200px;
+  }
 }

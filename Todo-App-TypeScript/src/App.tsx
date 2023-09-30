@@ -1,21 +1,19 @@
-import { useState } from 'react'
-import './App.css'
-import AddTodo from './components/AddTodo'
-import SideBar from './components/SideBar'
-import TodoArea from './components/TodoArea'
+import { useState } from "react";
+import "./App.css";
+import AddTodo from "./components/AddTodo";
+import SideBar from "./components/SideBar";
+import TodoArea from "./components/TodoArea";
 
-function App() {
-
-
+const App: React.FC = () => {
   return (
     <>
-      <div>
-        <AddTodo/>
-        <SideBar/>
-        <TodoArea/>
+      <div className="general">
+        <AddTodo />
+        <SideBar />
+        <TodoArea />
       </div>
     </>
-  )
-}
+  );
+};
 
-export default App
+export default App;
