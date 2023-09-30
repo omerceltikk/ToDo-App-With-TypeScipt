@@ -1,12 +1,14 @@
 import React from "react";
 import styles from "./styles.module.css";
-import { useDispatch } from "react-redux";
+import { useDispatch,useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { addTodo } from "../../redux/slice/TodoSlice";
 // interface FormProps {
 //   submittedData: (data: customFormFieldProps) => void;
 // }
-
+interface RootState {
+  todos: any
+}
 type customFormFieldProps = {
   id: number;
   title: string;
@@ -15,16 +17,20 @@ type customFormFieldProps = {
   category: string;
 }
 const Form:React.FC = () => {
+  const selectorData = (state: RootState) => state.todos.data;
+  const updatedData = useSelector(selectorData);
+  let uniqueID = Math.floor(Math.random() * 10000000000) ;
   const dispatch: AppDispatch = useDispatch();
   const [data, setData] = React.useState<customFormFieldProps>({
-    id: Math.floor(Math.random() * 1000000000),
+    id: uniqueID,
     title: "",
     description: "",
     date: "",
     category: "",
   });
   function handleChange(e: any) {
-    setData({ ...data, [e.target.name]: e.target.value });
+    setData({ ...data, id: uniqueID,  [e.target.name]: e.target.value });
+
   }
   function HandleSumbit(e: any) {
     e.preventDefault();
@@ -33,6 +39,7 @@ const Form:React.FC = () => {
     }else{
       console.log(data);
       dispatch(addTodo(data));
+      localStorage.setItem("todos", JSON.stringify([...updatedData,data]))
     }
     // onSubmit(data) dispach ile gönderilecek;
     // e.clear();

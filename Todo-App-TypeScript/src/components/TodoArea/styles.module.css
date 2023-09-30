@@ -1,0 +1,19 @@
+.container{
+  max-width: 1280px;
+  margin:  auto;
+}
+.buttons{
+display: flex;
+justify-content: flex-end;
+padding: 0 200px;
+margin-bottom: 40px;
+}
+.buttons input{
+  display: none;
+}
+.buttons label i{
+  color: #b1b1b1;
+}
+.buttons label i:hover{
+  color: #535353;
+}

@@ -1,26 +1,22 @@
 import { useEffect, useState } from "react";
 import styles from "./stylex.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch } from "../../redux/store";
+import { filterCategory } from "../../redux/slice/TodoSlice";
 const SideBar:React.FC = () => {
   const item = localStorage.getItem("important");
   const impValue = item ? JSON.parse(item) : [];
-
   const [important, setImportant] = useState<string[]>(impValue);
-  const [category, setCategory] = useState<string[]>([]);
-  const [date, setDate] = useState<string>("");
+  const dispatch: AppDispatch = useDispatch();
 
   async function handleChange(e: any) {
-    if (e.target.checked) {
-      await setCategory([...category, e.target.value]);
-    } else {
-      const filtered = await category.filter((item) => item != e.target.value);
-      setCategory(filtered);
-    }
+    dispatch(filterCategory(e.target.value));
+   console.log(e.target.value);
+   
   }
   function handleDate(e: any) {
-    if (e.target.value) {
-      setDate(e.target.value);
-    } else {
-    }
+    
+    
   }
   function handleKeyDown(e: any) {
     if (important.length == 0 && e.key == "Enter") {
@@ -72,7 +68,7 @@ const SideBar:React.FC = () => {
         <h4>Category</h4>
         <div>
           <input
-            type="checkbox"
+            type="radio"
             id="business"
             name="category"
             value="business"
@@ -80,16 +76,16 @@ const SideBar:React.FC = () => {
           <label htmlFor="business">Business</label>
         </div>
         <div>
-          <input type="checkbox" id="daily" name="category" value="daily" />
+          <input type="radio" id="daily" name="category" value="daily" />
           <label htmlFor="daily">Daily</label>
         </div>
         <div>
-          <input type="checkbox" id="social" name="category" value="social" />
+          <input type="radio" id="social" name="category" value="social" />
           <label htmlFor="social">Social</label>
         </div>
         <div>
           <input
-            type="checkbox"
+            type="radio"
             id="education"
             name="category"
             value="education"
