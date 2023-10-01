@@ -5,15 +5,13 @@ const dataBase = localStorage.getItem("todos");
 
 interface TodoState {
   data: any;
-  filtered: any;
-  categoryStatus:boolean,
-  dateStatus:boolean,
+  categoryStatus:string,
+  doneStatus:string
 }
 const initialState: TodoState = {
   data: dataBase ? JSON.parse(dataBase) : [],
-  filtered: [],
-  categoryStatus:false,
-  dateStatus:false,
+  categoryStatus:"all",
+  doneStatus:"all"
 };
 
 const TodoSlice = createSlice({
@@ -28,23 +26,28 @@ const TodoSlice = createSlice({
       state.data = todo;
       localStorage.setItem("todos", JSON.stringify(todo));
     },
+    doneTodo:(state,action : PayloadAction<any>) => {
+      const finded = state.data.find((item: any) => item.id == action.payload.id);
+      finded.isDone = action.payload.isDone;
+      localStorage.setItem("todos", JSON.stringify(state.data));
+      
+    },
     editTodo: (state, action: PayloadAction<any>) => {
       const todo = state.data.find((item: any) => item.id == action.payload.id);
-
-      // localStorage.setItem("todos", JSON.stringify(todo))
+      todo.title = action.payload.title;
+      todo.description = action.payload.description
+      localStorage.setItem("todos", JSON.stringify(state.data));
     },
     filterCategory: (state, action: PayloadAction<string>) => {
-        state.categoryStatus=true;
-        const newState = state.data.filter(
-          (e: any) => e.category == action.payload
-          );
-          state.filtered = newState
-      }
+      state.categoryStatus=action.payload;
     },
+    filterDone: (state,action: PayloadAction<string>) => {
+      state.doneStatus=action.payload;
+    }
   },
-);
+});
 
-export const { addTodo, removeTodo, editTodo, filterCategory } =
+export const { addTodo, removeTodo, editTodo, filterCategory,filterDone,doneTodo} =
   TodoSlice.actions;
 
 export const selectTodo = (state: RootState) => state.todos.data;

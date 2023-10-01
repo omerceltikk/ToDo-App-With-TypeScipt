@@ -6,11 +6,13 @@
   align-items: center;
 }
 .area{
-  padding: 30px 0;
+  padding: 30px 10px;
   border-bottom: 1px solid #cecece;
   display: flex;
   justify-content: space-between;
   width: 100%;
+  align-items: center;
+
 }
 .title{
   font-weight: 600;
@@ -23,4 +25,28 @@ i{
   display: flex;
   align-items: center;
   gap: 10px;
+}
+.done{
+  background-color: #862b0d11;
+  text-decoration:line-through;
+  transition: all 0.5s ease-in;
+  border-radius: 1.25rem;
+}
+.tag{
+  padding: 5px;
+  border-radius: 3px;
+  background-color: #cecece;
+}
+.titleInput{
+  border-radius: 50px;
+  outline: none;
+  border: 1px solid #cecece;
+  padding: 3px;
+  padding-left: 10px;
+  max-width: 75%;
+}
+.endArea{
+  display: flex;
+  gap:5px;
+  align-items: center;
 }

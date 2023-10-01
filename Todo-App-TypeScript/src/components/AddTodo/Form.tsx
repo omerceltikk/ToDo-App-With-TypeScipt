@@ -15,6 +15,7 @@ type customFormFieldProps = {
   description: string;
   date: string;
   category: string;
+  isDone:string
 }
 const Form:React.FC = () => {
   const selectorData = (state: RootState) => state.todos.data;
@@ -27,6 +28,7 @@ const Form:React.FC = () => {
     description: "",
     date: "",
     category: "",
+    isDone:"inProgress"
   });
   function handleChange(e: any) {
     setData({ ...data, id: uniqueID,  [e.target.name]: e.target.value });
@@ -37,12 +39,10 @@ const Form:React.FC = () => {
     if(data.date == "" || data.category == "" || data.title.length < 5 || data.description.length<5){
       alert("please correctly complete the fields")
     }else{
-      console.log(data);
       dispatch(addTodo(data));
       localStorage.setItem("todos", JSON.stringify([...updatedData,data]))
     }
-    // onSubmit(data) dispach ile gönderilecek;
-    // e.clear();
+
   }
   return (
     <div>

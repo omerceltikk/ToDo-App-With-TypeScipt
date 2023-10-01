@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import styles from "./stylex.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
-import { filterCategory } from "../../redux/slice/TodoSlice";
+import { filterCategory,filterDone } from "../../redux/slice/TodoSlice";
 const SideBar:React.FC = () => {
   const item = localStorage.getItem("important");
   const impValue = item ? JSON.parse(item) : [];
@@ -11,11 +11,9 @@ const SideBar:React.FC = () => {
 
   async function handleChange(e: any) {
     dispatch(filterCategory(e.target.value));
-   console.log(e.target.value);
-   
   }
-  function handleDate(e: any) {
-    
+  function handleDone(e: any) {
+    dispatch(filterDone(e.target.value));
     
   }
   function handleKeyDown(e: any) {
@@ -49,23 +47,33 @@ const SideBar:React.FC = () => {
         <h3>Filter Your Todo's</h3>
         <hr />
       </div>
-      <div onChange={(e) => handleDate(e)} className={styles.calendar}>
-        <h4>Calendar</h4>
+      <div onChange={(e) => handleDone(e)} className={styles.calendar}>
+        <h4>Status</h4>
         <div>
-          <input type="radio" id="Today" name="date" value="Today " />
-          <label htmlFor="Today">Today</label>
+          <input type="radio" id="allDone" name="isDone" value="all" />
+          <label htmlFor="allDone">All</label>
         </div>
         <div>
-          <input type="radio" id="oneweek" name="date" value="oneweek" />
-          <label htmlFor="oneweek">1 week</label>
+          <input type="radio" id="done" name="isDone" value="done" />
+          <label htmlFor="done">Done</label>
         </div>
         <div>
-          <input type="radio" id="onemonth" name="date" value="onemonth" />
-          <label htmlFor="onemonth">1 month</label>
+          <input type="radio" id="inProgress" name="isDone" value="inProgress" />
+          <label htmlFor="inProgress">In Progress</label>
         </div>
       </div>
       <div onChange={(e) => handleChange(e)} className={styles.category}>
         <h4>Category</h4>
+        <div>
+          <input
+            type="radio"
+            id="allcategory"
+            name="category"
+            value="all"
+            
+          />
+          <label htmlFor="allcategory">All</label>
+        </div>
         <div>
           <input
             type="radio"

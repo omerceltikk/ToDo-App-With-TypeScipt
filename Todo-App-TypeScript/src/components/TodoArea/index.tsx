@@ -1,9 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import styles from "./styles.module.css";
 import ListItem from "../ListItem";
 import CardItem from "../CardItem";
-import { filterCategory } from "../../redux/slice/TodoSlice";
 interface RootState {
   todos: any;
 }
@@ -13,23 +12,42 @@ interface ItemState {
     title: string;
     description: string;
     date: string;
-    category: string;
+    isDone: boolean;
   };
 }
 const TodoArea: React.FC = () => {
   const [listStatus, setListStatus] = useState<string>("list");
-
+  const [data, SetData] = useState<any>([]);
   const selectorData = (state: RootState) => state.todos.data;
-  const filter = (state: RootState) => state.todos.filtered;
   const category = (state: RootState) => state.todos.categoryStatus;
-  const date = (state: RootState) => state.todos.dateStatus;
- 
+  const isDone = (state: RootState) => state.todos.doneStatus;
+
   const updatedData = useSelector(selectorData);
-  const filterData = useSelector(filter);
   const categoryData = useSelector(category);
-  const dateData = useSelector(date);
- 
-  console.log(filterData);
+  const isDoneData = useSelector(isDone);
+
+  useEffect(() => {
+    if (categoryData == "all" && isDoneData == "all") {
+      SetData(updatedData);
+    } else if (categoryData != "all" && isDoneData == "all") {
+      const newData = updatedData.filter(
+        (item: any) => item.category == categoryData
+      );
+      SetData(newData);
+    } else if (isDoneData != "all" && categoryData != "all") {
+      const newData = updatedData.filter(
+        (item: any) =>
+          item.category == categoryData && item.isDone == isDoneData
+      );
+      SetData(newData);
+    } else if (categoryData == "all" && isDoneData != "all") {
+      const newData = updatedData.filter(
+        (item: any) => item.isDone == isDoneData
+      );
+      SetData(newData);
+    }
+  }, [categoryData, updatedData, isDoneData]);
+  console.log(isDoneData);
   
   function handleChange(e: any) {
     setListStatus(e.target.value);
@@ -51,14 +69,12 @@ const TodoArea: React.FC = () => {
           </label>
         </div>
       </div>
-      {listStatus == "list" && categoryData == true ?
-        filterData?.map((e: ItemState) => <ListItem key={e.id} data={e} />) :
-        updatedData?.map((e: ItemState) => <ListItem key={e.id} data={e} />)
-        }
-      {listStatus == "card" && categoryData ?
-        filterData?.map((e: ItemState) => <CardItem key={e.id} data={e} />) :
-        updatedData?.map((e: ItemState) => <CardItem key={e.id} data={e} />)
-        }
+      {listStatus == "list" &&
+        data?.map((item: ItemState["item"]) => (
+          <ListItem key={item.id} data={item} />
+        ))}
+      {listStatus == "card" &&
+        data?.map((e: ItemState["item"]) => <CardItem key={e.id} data={e} />)}
     </div>
   );
 };
