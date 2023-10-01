@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import styles from "./stylex.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { AppDispatch } from "../../redux/store";
-import { filterCategory,filterDone } from "../../redux/slice/TodoSlice";
-const SideBar:React.FC = () => {
+import { filterCategory, filterDone } from "../../redux/slice/TodoSlice";
+const SideBar: React.FC = () => {
   const item = localStorage.getItem("important");
   const impValue = item ? JSON.parse(item) : [];
   const [important, setImportant] = useState<string[]>(impValue);
@@ -14,7 +14,6 @@ const SideBar:React.FC = () => {
   }
   function handleDone(e: any) {
     dispatch(filterDone(e.target.value));
-    
   }
   function handleKeyDown(e: any) {
     if (important.length == 0 && e.key == "Enter") {
@@ -47,49 +46,52 @@ const SideBar:React.FC = () => {
         <h3>Filter Your Todo's</h3>
         <hr />
       </div>
-      <div onChange={(e) => handleDone(e)} className={styles.calendar}>
+      <div onChange={(e) => handleDone(e)} className={styles.doneArea}>
         <h4>Status</h4>
-        <div>
-          <input type="radio" id="allDone" name="isDone" value="all" />
-          <label htmlFor="allDone">All</label>
-        </div>
-        <div>
-          <input type="radio" id="done" name="isDone" value="done" />
-          <label htmlFor="done">Done</label>
-        </div>
-        <div>
-          <input type="radio" id="inProgress" name="isDone" value="inProgress" />
-          <label htmlFor="inProgress">In Progress</label>
+        <div className={styles.innerDoneArea}>
+          <div>
+            <input type="radio" id="allDone" name="isDone" value="all" />
+            <label htmlFor="allDone">All</label>
+          </div>
+          <div>
+            <input type="radio" id="done" name="isDone" value="done" />
+            <label htmlFor="done">Done</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="inProgress"
+              name="isDone"
+              value="inProgress"
+            />
+            <label htmlFor="inProgress">In Progress</label>
+          </div>
         </div>
       </div>
       <div onChange={(e) => handleChange(e)} className={styles.category}>
         <h4>Category</h4>
-        <div>
-          <input
-            type="radio"
-            id="allcategory"
-            name="category"
-            value="all"
-            
-          />
-          <label htmlFor="allcategory">All</label>
-        </div>
-        <div>
-          <input
-            type="radio"
-            id="business"
-            name="category"
-            value="business"
-          />
-          <label htmlFor="business">Business</label>
-        </div>
-        <div>
-          <input type="radio" id="daily" name="category" value="daily" />
-          <label htmlFor="daily">Daily</label>
-        </div>
-        <div>
-          <input type="radio" id="social" name="category" value="social" />
-          <label htmlFor="social">Social</label>
+        <div className={styles.innerCategoryArea}>
+          <div>
+            <input type="radio" id="allcategory" name="category" value="all" />
+            <label htmlFor="allcategory">All</label>
+          </div>
+          <div>
+            <input
+              type="radio"
+              id="business"
+              name="category"
+              value="business"
+            />
+            <label htmlFor="business">Business</label>
+          </div>
+          <div>
+            <input type="radio" id="daily" name="category" value="daily" />
+            <label htmlFor="daily">Daily</label>
+          </div>
+          <div>
+            <input type="radio" id="social" name="category" value="social" />
+            <label htmlFor="social">Social</label>
+          </div>
         </div>
         <div>
           <input

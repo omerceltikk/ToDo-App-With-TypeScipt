@@ -25,29 +25,30 @@ const TodoArea: React.FC = () => {
   const updatedData = useSelector(selectorData);
   const categoryData = useSelector(category);
   const isDoneData = useSelector(isDone);
-
+  
   useEffect(() => {
     if (categoryData == "all" && isDoneData == "all") {
-      SetData(updatedData);
+      const newData = Array.from(updatedData);
+      SetData(newData.reverse())
     } else if (categoryData != "all" && isDoneData == "all") {
       const newData = updatedData.filter(
         (item: any) => item.category == categoryData
       );
-      SetData(newData);
+      SetData(newData.reverse());
     } else if (isDoneData != "all" && categoryData != "all") {
       const newData = updatedData.filter(
         (item: any) =>
           item.category == categoryData && item.isDone == isDoneData
       );
-      SetData(newData);
+      SetData(newData.reverse());
     } else if (categoryData == "all" && isDoneData != "all") {
       const newData = updatedData.filter(
         (item: any) => item.isDone == isDoneData
       );
-      SetData(newData);
+      SetData(newData.reverse());
     }
   }, [categoryData, updatedData, isDoneData]);
-  console.log(isDoneData);
+  
   
   function handleChange(e: any) {
     setListStatus(e.target.value);
@@ -73,8 +74,10 @@ const TodoArea: React.FC = () => {
         data?.map((item: ItemState["item"]) => (
           <ListItem key={item.id} data={item} />
         ))}
+        <div className={styles.cardContainer}>
       {listStatus == "card" &&
         data?.map((e: ItemState["item"]) => <CardItem key={e.id} data={e} />)}
+        </div>
     </div>
   );
 };

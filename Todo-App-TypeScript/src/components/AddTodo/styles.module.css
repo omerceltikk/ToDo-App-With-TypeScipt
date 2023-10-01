@@ -1,3 +1,8 @@
+*{
+  --base-gary-color: #5e5e5e;
+  --base-purple-color: #662549;
+  --base-bg-color:#e7e7e7
+}
 .container {
   margin: 0 auto;
   padding: 3rem 0;
@@ -7,7 +12,7 @@ textarea {
   resize: vertical;
   padding: 10px;
   border-radius: 20px;
-  box-shadow: 2px 3px 1px #5e5e5e;
+  box-shadow: 2px 3px 1px var(--base-gary-color);
 }
 select,
 .date {
@@ -15,8 +20,8 @@ select,
   padding: 10px;
   border-radius: 50px;
   font-size: 1rem;
-  box-shadow: 2px 3px 1px #5e5e5e;
-  border: 1px solid #5e5e5e;
+  box-shadow: 2px 3px 1px var(--base-gary-color);
+  border: 1px solid var(--base-gary-color);
 }
 label {
   font-size: 1rem;
@@ -27,26 +32,25 @@ label {
 }
 
 .displayBlock {
-  display: block;
-}
+display: block;}
 .addTodoView{
-  transition: all 1s ease-in 0s;
+  transition: all 1s ease-in;
 }
 button {
   margin-top: 10px;
-  background-color: #662549;
+  background-color: var(--base-purple-color);
   color: #fff;
   border-radius: 50px;
   padding: 10px;
   font-size: 1rem;
-  box-shadow: 2px 3px 1px #5e5e5e;
+  box-shadow: 2px 3px 1px var(--base-gary-color);
   /* border: 1px solid #5e5e5e; */
 }
 .header {
   font-weight: 900;
   font-size: 2rem;
   text-transform: uppercase;
-  color: #5e5e5e;
+  color: var(--base-gary-color);
   text-decoration: underline;
   padding: 0 20px 20px;
 }
@@ -83,9 +87,9 @@ button {
 .input {
   padding: 10px 20px;
   border-radius: 50px;
-  border: 1px solid #5e5e5e;
+  border: 1px solid var(--base-gary-color);
   outline: none;
-  box-shadow: 2px 3px 1px #5e5e5e;
+  box-shadow: 2px 3px 1px var(--base-gary-color);
 }
 
 textarea:focus,
@@ -102,10 +106,10 @@ select:focus,
   }
   50% {
     background-color: #e6e6e6;
-    border: 1px solid #662549;
+    border: 1px solid var(--base-purple-color);
   }
   100% {
-    background-color: #e7e7e7;
+    background-color: var(--base-bg-color)
   }
 }
 @media screen and (min-width: 576px) {
@@ -127,4 +131,30 @@ select:focus,
   .header {
     padding-left: 200px;
   }
+}
+.expand{
+  text-align: center;
+  max-width: 1280px;
+  display: flex;
+
+  align-items: center;
+  flex-direction: column;
+  
+}
+.btn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  padding: 10px;
+}
+.btntext{
+  width: 400px;
+  border-bottom: 2px solid var(--base-bg-color);
+  border-radius: 30px;
+  padding: 10px;
+}
+i{
+  padding: 5px;
+  color: var(--base-gary-color);
 }

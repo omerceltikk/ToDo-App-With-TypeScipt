@@ -57,7 +57,7 @@ const ListItem = ({ data }: ItemState) => {
           className={`${styles.area} ${data.isDone == "done" && styles.done}`}
         >
           <div className={styles.text}>
-            <input type="checkbox" onChange={(e) => handleChange(e)} />
+            <input defaultChecked={data.isDone == "done" ? true : false} type="checkbox" onChange={(e) => handleChange(e)} />
             <div className={styles.title}>
               {editStatus == true ? (
                 <input
@@ -74,7 +74,7 @@ const ListItem = ({ data }: ItemState) => {
             </div>
           </div>
           <div className={styles.text}>
-            <div className={styles.title}>
+            <div className={styles.description}>
               {editStatus == true ? (
                 <input
                   type="text"

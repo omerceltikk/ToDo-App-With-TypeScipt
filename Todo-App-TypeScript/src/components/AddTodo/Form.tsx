@@ -41,6 +41,7 @@ const Form:React.FC = () => {
     }else{
       dispatch(addTodo(data));
       localStorage.setItem("todos", JSON.stringify([...updatedData,data]))
+      e.target.reset()
     }
 
   }

@@ -1,20 +1,50 @@
-.container{
+.container {
   max-width: 1280px;
-  margin:  auto;
+  margin: auto;
   margin-bottom: 200px;
 }
-.buttons{
-display: flex;
-justify-content: flex-end;
-padding: 0 200px;
-margin-bottom: 40px;
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  padding: 0 20px;
+  margin: 40px 0;
 }
-.buttons input{
+.buttons input {
   display: none;
 }
-.buttons label i{
+.buttons label i {
   color: #b1b1b1;
 }
-.buttons label i:hover{
+.buttons label i:hover {
   color: #535353;
+}
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+}
+@media screen and (min-width: 567px) {
+  .cardContainer {
+    display: grid;
+    align-items: baseline;
+    grid-template-columns: 1fr 1fr;
+    padding: 0 200px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .cardContainer {
+    display: grid;
+    align-items: baseline;
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 0 200px;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .cardContainer {
+    padding: 0 200px;
+    gap: 50px;
+  }
 }
