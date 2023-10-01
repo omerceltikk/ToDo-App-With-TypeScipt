@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 import styles from "./stylex.module.css";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../redux/store";
 import { filterCategory, filterDone } from "../../redux/slice/TodoSlice";
 const SideBar: React.FC = () => {
